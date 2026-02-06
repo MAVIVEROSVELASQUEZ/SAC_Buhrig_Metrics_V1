@@ -1,6 +1,9 @@
 """
 01_prepare_dem.py
 -----------------
+# Author: Marco Antonio Viveros Velásquez
+# Project: SAC_Buhring_Metrics_V1
+
 Preparation of base bathymetric DEM for the SAC – Bühring Metrics Pipeline.
 
 This script reprojects the raw GMRT bathymetric raster to a metric
@@ -10,7 +13,7 @@ of the San Antonio Submarine Canyon (SAC).
 
 ---------------------------------------------------------------------
 DATA SOURCE
----------------------------------------------------------------------
+--------------------------------------------------------------------
 Global Multi-Resolution Topography (GMRT) Grid
 
 Citation:
@@ -24,35 +27,15 @@ https://doi.org/10.1029/2008GC002332
 GMRT Version:
     v4.4 (released August 2025)
 
-Download parameters:
-    - File format   : GeoTIFF
-    - Mask          : Masked (ocean-only high-resolution data, NaNs on land)
-    - Grid resolution: Medium (~122 m/node)
-    - Projection    : WGS84 geographic coordinates (EPSG:4326)
-
 ---------------------------------------------------------------------
 INPUT (RAW, IMMUTABLE)
 ---------------------------------------------------------------------
 data/raw/GMRT_raster/GMRTv4_4_0_20260119topo-mask.tif
 
-This file is preserved unmodified to ensure full data traceability.
-
 ---------------------------------------------------------------------
 OUTPUT (PROCESSED)
 ---------------------------------------------------------------------
 data/processed/SAC_GMRT_DEM_UTM18S.tif
-
-Reprojected to:
-    - CRS: UTM Zone 18S (WGS84, EPSG:32718)
-    - Units: meters
-
----------------------------------------------------------------------
-AUTHOR
----------------------------------------------------------------------
-Marco Antonio Viveros Velásquez
-
-Project:
-    SAC – Bühring Metrics Pipeline
 """
 
 import os
@@ -64,14 +47,14 @@ from pyproj import CRS
 def main():
 
     # --------------------------------------------------------------
-    # Project root (relative to this script)
+    # Project root (SAC_Buhring_Metrics_V1)
     # --------------------------------------------------------------
     project_root = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "..")
     )
 
     # --------------------------------------------------------------
-    # Input / Output paths
+    # Input / Output paths (UPDATED PROJECT ROUTES)
     # --------------------------------------------------------------
     input_raster = os.path.join(
         project_root,
@@ -79,7 +62,11 @@ def main():
         "GMRTv4_4_0_20260119topo-mask.tif"
     )
 
-    output_dir = os.path.join(project_root, "data", "processed")
+    output_dir = os.path.join(
+        project_root,
+        "data", "processed"
+    )
+
     output_raster = os.path.join(
         output_dir,
         "SAC_GMRT_DEM_UTM18S.tif"

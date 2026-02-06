@@ -3,35 +3,43 @@
 # ============================================================
 # Calculation of Point P4 for each transversal profile.
 #
-# P4 is defined as the geometric intersection between:
-#   - Wmax: segment connecting Edge_Left (P2) and Edge_Right (P3)
-#   - Dmax: line passing through the talweg point (P1) and
-#           perpendicular to Wmax
-#
-# The computation is performed in full vector geometry space
-# using the original shapefile containing P1, P2 and P3.
-#
-# Outputs:
-#   - Shapefile with Point P4 (geometry + attributes)
-#   - CSV table with P4 coordinates and depth
-#
-# CRS: UTM 18S (meters)
-#
 # Author: Marco Antonio Viveros Velásquez
-# Project: SAC – Bührig Metrics Pipeline
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
+import os
 import geopandas as gpd
 import pandas as pd
 import numpy as np
-from shapely.geometry import Point, LineString
+from shapely.geometry import Point
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-INPUT_SHP = r"data/processed/SAC_profile_keypoints_P1_P2_P3.shp"
-OUTPUT_SHP = r"data/processed/SAC_profile_keypoints_P4.shp"
-OUTPUT_CSV = r"data/processed/SAC_profile_keypoints_P4.csv"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+INPUT_SHP = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3.shp"
+)
+
+OUTPUT_SHP = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P4.shp"
+)
+
+OUTPUT_CSV = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P4.csv"
+)
 
 # ------------------------------------------------------------
 # Load input keypoints

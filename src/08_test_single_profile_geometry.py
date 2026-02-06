@@ -3,6 +3,9 @@
 #
 # Full Bührig geometry validation for a single profile
 # V6 – Improved aspect ratio, labels, and vertical padding
+
+# Author: Marco Antonio Viveros Velásquez
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
 import os
@@ -17,13 +20,38 @@ import matplotlib.pyplot as plt
 PROFILE_ID = 54
 BUFFER_M = 4000
 
-BASE_DIR = r"C:\Python2025_SAC\SAC_MetricsBu_Project\SAC_Buhring_Metrics_PIPELINE"
+# ------------------------------------------------------------
+# Project root (SAC_Buhring_Metrics_V1)
+# ------------------------------------------------------------
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
 
-DEM_PATH = os.path.join(BASE_DIR, "data/processed/SAC_GMRT_DEM_UTM18S.tif")
-TRANSECTS_PATH = os.path.join(BASE_DIR, "data/processed/SAC_transversal_profiles_Clean.shp")
-KEYPOINTS_PATH = os.path.join(BASE_DIR, "data/processed/SAC_profile_keypoints_P1_P2_P3_P4.shp")
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+DEM_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_GMRT_DEM_UTM18S.tif"
+)
 
-OUT_DIR = os.path.join(BASE_DIR, "outputs/validation_profiles")
+TRANSECTS_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_transversal_profiles_Clean.shp"
+)
+
+KEYPOINTS_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3_P4.shp"
+)
+
+OUT_DIR = os.path.join(
+    project_root,
+    "outputs", "validation_profiles"
+)
 os.makedirs(OUT_DIR, exist_ok=True)
 
 OUT_PNG = os.path.join(
@@ -119,7 +147,7 @@ B2 = angle_cosine(H2, D, W2)
 # ------------------------------------------------------------
 # PLOT – V6
 # ------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(14, 7))  # 🔹 más ancho (perfil)
+fig, ax = plt.subplots(figsize=(14, 7))
 
 ax.plot(s_crop, d_crop, color="0.6", lw=2, label="Real canyon profile (DEM)")
 ax.plot([s2, s3], [P2z, P3z], "--", lw=2, label="Wmax")
@@ -127,19 +155,16 @@ ax.plot([s1, s1], [P1z, P4z], lw=2, label="Dmax")
 ax.plot([s1, s2], [P1z, P2z], lw=1.2, label="H1")
 ax.plot([s1, s3], [P1z, P3z], lw=1.2, label="H2")
 
-# Points (bigger talweg)
 ax.scatter([s1, s2, s3, s4],
            [P1z, P2z, P3z, P4z],
            s=[120, 70, 70, 70],
            zorder=6)
 
-# Point labels
 ax.text(s1, P1z, "P1", ha="center", va="top", fontsize=11, fontweight="bold")
 ax.text(s2, P2z, "P2", ha="left", va="bottom", fontsize=10)
 ax.text(s3, P3z, "P3", ha="right", va="bottom", fontsize=10)
 ax.text(s4, P4z, "P4", ha="center", va="bottom", fontsize=10)
 
-# 🔑 Vertical padding (extra space below talweg)
 pad = (d_crop.max() - d_crop.min()) * 0.12
 ax.set_ylim(d_crop.min(), d_crop.max() + pad)
 ax.invert_yaxis()

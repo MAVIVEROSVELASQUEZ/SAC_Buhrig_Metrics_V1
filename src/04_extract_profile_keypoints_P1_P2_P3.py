@@ -2,6 +2,9 @@
 04_extract_profile_keypoints_P1_P2_P3.py
 ---------------------------------------
 
+Author: Marco Antonio Viveros Velásquez
+Project: SAC_Buhring_Metrics_V1
+
 Stage 04 of the SAC – Bührig Metrics Pipeline.
 
 This script extracts the three fundamental geomorphological key points
@@ -11,38 +14,58 @@ UTM coordinates (X, Y) and bathymetric depth (Z).
 P1: Talweg intersection
 P2: Left canyon edge intersection
 P3: Right canyon edge intersection
-
-Depth (Z) is sampled from the GMRT-derived DEM (negative values).
-
----------------------------------------------------------------------
-INPUTS
----------------------------------------------------------------------
-- data/processed/SAC_transversal_profiles_Clean.shp
-- data/raw/SAC_Thalweg.shp
-- data/raw/SAC_Edge.shp
-- data/processed/SAC_GMRT_DEM_UTM18S.tif
-
----------------------------------------------------------------------
-OUTPUTS
----------------------------------------------------------------------
-- data/processed/SAC_profile_keypoints_P1_P2_P3.shp
-- data/processed/SAC_profile_keypoints_P1_P2_P3.csv
 """
 
+import os
 import geopandas as gpd
 import rasterio
 from shapely.geometry import Point
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-PROFILES_PATH = r"data/processed/SAC_transversal_profiles_Clean.shp"
-THALWEG_PATH  = r"data/raw/SAC_Thalweg.shp"
-EDGE_PATH     = r"data/raw/SAC_Edge.shp"
-DEM_PATH      = r"data/processed/SAC_GMRT_DEM_UTM18S.tif"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
 
-OUT_SHP = r"data/processed/SAC_profile_keypoints_P1_P2_P3.shp"
-OUT_CSV = r"data/processed/SAC_profile_keypoints_P1_P2_P3.csv"
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+PROFILES_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_transversal_profiles_Clean.shp"
+)
+
+THALWEG_PATH = os.path.join(
+    project_root,
+    "data", "raw",
+    "SAC_Thalweg.shp"
+)
+
+EDGE_PATH = os.path.join(
+    project_root,
+    "data", "raw",
+    "SAC_Edge.shp"
+)
+
+DEM_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_GMRT_DEM_UTM18S.tif"
+)
+
+OUT_SHP = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3.shp"
+)
+
+OUT_CSV = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3.csv"
+)
 
 # ------------------------------------------------------------
 # Load data

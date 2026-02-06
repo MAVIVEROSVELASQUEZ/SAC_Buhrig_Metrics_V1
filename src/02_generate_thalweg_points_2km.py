@@ -15,18 +15,35 @@
 #   Projected CRS (UTM 18S)
 #
 # Author: Marco Antonio Viveros Velásquez
-# Project: SAC – Bührig Metrics Pipeline
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
+import os
 import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-THALWEG_PATH = r"data/raw/SAC_Thalweg.shp"
-OUTPUT_PATH  = r"data/processed/thalweg_points_2km.shp"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+THALWEG_PATH = os.path.join(
+    project_root,
+    "data", "raw",
+    "SAC_Thalweg.shp"
+)
+
+OUTPUT_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "thalweg_points_2km.shp"
+)
 
 # ------------------------------------------------------------
 # Parameters

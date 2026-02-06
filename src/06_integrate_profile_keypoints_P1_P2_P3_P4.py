@@ -4,32 +4,47 @@
 # Integrates all key geomorphic points (P1–P4) per transversal
 # profile into a single geospatial dataset.
 #
-# Inputs:
-#   - SAC_profile_keypoints_P1_P2_P3.shp
-#   - SAC_profile_keypoints_P4.shp
-#
-# Outputs:
-#   - SAC_profile_keypoints_P1_P2_P3_P4.shp
-#   - SAC_profile_keypoints_P1_P2_P3_P4.csv
-#
-# CRS:
-#   UTM 18S (projected)
-#
 # Author: Marco Antonio Viveros Velásquez
-# Project: SAC – Bührig Metrics Pipeline
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
+import os
 import geopandas as gpd
 import pandas as pd
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-P123_PATH = r"data/processed/SAC_profile_keypoints_P1_P2_P3.shp"
-P4_PATH   = r"data/processed/SAC_profile_keypoints_P4.shp"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
 
-OUT_SHP = r"data/processed/SAC_profile_keypoints_P1_P2_P3_P4.shp"
-OUT_CSV = r"data/processed/SAC_profile_keypoints_P1_P2_P3_P4.csv"
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+P123_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3.shp"
+)
+
+P4_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P4.shp"
+)
+
+OUT_SHP = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3_P4.shp"
+)
+
+OUT_CSV = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3_P4.csv"
+)
 
 # ------------------------------------------------------------
 # Load datasets

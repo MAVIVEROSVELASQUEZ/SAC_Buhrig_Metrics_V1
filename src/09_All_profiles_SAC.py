@@ -5,6 +5,8 @@
 # V8 – Regular sampling every 200 m (DEM smoothing)
 #
 # One PNG per profile
+# Author: Marco Antonio Viveros Velásquez
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
 import os
@@ -20,15 +22,37 @@ BUFFER_M = 4000
 SAMPLING_STEP_M = 200.0   # <<< CLAVE
 MAX_SAMPLES = 8000
 
-BASE_DIR = r"C:\Python2025_SAC\SAC_MetricsBu_Project\SAC_Buhring_Metrics_PIPELINE"
+# ------------------------------------------------------------
+# Project root (SAC_Buhring_Metrics_V1)
+# ------------------------------------------------------------
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
 
-DEM_PATH = os.path.join(BASE_DIR, "data/processed/SAC_GMRT_DEM_UTM18S.tif")
-TRANSECTS_PATH = os.path.join(BASE_DIR, "data/processed/SAC_transversal_profiles_Clean.shp")
-KEYPOINTS_PATH = os.path.join(BASE_DIR, "data/processed/SAC_profile_keypoints_P1_P2_P3_P4.shp")
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+DEM_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_GMRT_DEM_UTM18S.tif"
+)
+
+TRANSECTS_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_transversal_profiles_Clean.shp"
+)
+
+KEYPOINTS_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3_P4.shp"
+)
 
 OUT_DIR = os.path.join(
-    BASE_DIR,
-    "outputs/validation_profiles/All_Profiles"
+    project_root,
+    "outputs", "validation_profiles", "All_Profiles"
 )
 os.makedirs(OUT_DIR, exist_ok=True)
 

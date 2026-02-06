@@ -4,28 +4,36 @@
 # Computes Bührig-type geomorphic metrics from key points
 # P1–P4 extracted along transversal canyon profiles.
 #
-# Input:
-#   data/processed/SAC_profile_keypoints_P1_P2_P3_P4.shp
-#
-# Output:
-#   data/processed/SAC_Buhring_metrics_all_profiles.csv
-#
-# CRS:
-#   UTM 18S (meters)
-#
 # Author: Marco Antonio Viveros Velásquez
-# Project: SAC – Bührig Metrics Pipeline
+# Project: SAC_Buhring_Metrics_V1
 # ============================================================
 
+import os
 import geopandas as gpd
 import pandas as pd
 import numpy as np
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-INPUT_PATH = r"data/processed/SAC_profile_keypoints_P1_P2_P3_P4.shp"
-OUTPUT_CSV = r"data/processed/SAC_Buhring_metrics_all_profiles.csv"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+INPUT_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_profile_keypoints_P1_P2_P3_P4.shp"
+)
+
+OUTPUT_CSV = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_Buhring_metrics_all_profiles.csv"
+)
 
 # ------------------------------------------------------------
 # Helper functions

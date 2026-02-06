@@ -5,56 +5,49 @@
 Generation of canyon-constrained transversal profiles perpendicular to
 the submarine canyon thalweg.
 
-For each point sampled every 2 km along the thalweg, this script attempts
-to construct a transversal profile perpendicular to the local thalweg
-direction.
-
-Primary method:
-- Edge-constrained transversal profiles intersecting both canyon margins
-  (left and right edges) and extended 3 km beyond each margin.
-
-Fallback method:
-- For thalweg points where edge-constrained profiles cannot be defined,
-  a fixed-length orthogonal profile (17 km total length) is generated.
-  These fallback profiles ensure full spatial coverage and are explicitly
-  flagged for posterior expert review and filtering.
-
-This approach guarantees that all thalweg sampling points are associated
-with a transversal geometry, while preserving a clear distinction between
-fully constrained and fallback profiles for subsequent quality control
-and metric computation.
-
----------------------------------------------------------------------
-INPUTS
----------------------------------------------------------------------
-- data/raw/SAC_Thalweg.shp
-- data/processed/thalweg_points_2km.shp
-- data/raw/SAC_Edge.shp
-
----------------------------------------------------------------------
-OUTPUT
----------------------------------------------------------------------
-- data/processed/SAC_transversal_profiles.shp
-
----------------------------------------------------------------------
-AUTHOR
----------------------------------------------------------------------
-Marco Antonio Viveros Velásquez
-Project: SAC – Bührig Metrics Pipeline
+Author: Marco Antonio Viveros Velásquez
+Project: SAC_Buhring_Metrics_V1
 """
 
+import os
 import geopandas as gpd
 import numpy as np
 from shapely.geometry import LineString
 from shapely.ops import unary_union
 
 # ------------------------------------------------------------
-# Paths
+# Project root (SAC_Buhring_Metrics_V1)
 # ------------------------------------------------------------
-THALWEG_PATH = r"data/raw/SAC_Thalweg.shp"
-POINTS_PATH  = r"data/processed/thalweg_points_2km.shp"
-EDGE_PATH    = r"data/raw/SAC_Edge.shp"
-OUTPUT_PATH  = r"data/processed/SAC_transversal_profiles.shp"
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+# ------------------------------------------------------------
+# Paths (UPDATED PROJECT ROUTES)
+# ------------------------------------------------------------
+THALWEG_PATH = os.path.join(
+    project_root,
+    "data", "raw",
+    "SAC_Thalweg.shp"
+)
+
+POINTS_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "thalweg_points_2km.shp"
+)
+
+EDGE_PATH = os.path.join(
+    project_root,
+    "data", "raw",
+    "SAC_Edge.shp"
+)
+
+OUTPUT_PATH = os.path.join(
+    project_root,
+    "data", "processed",
+    "SAC_transversal_profiles.shp"
+)
 
 # ------------------------------------------------------------
 # Parameters
