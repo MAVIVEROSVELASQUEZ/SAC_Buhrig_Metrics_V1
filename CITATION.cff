@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as follows."
+message: "If you use or reference this software, please cite it as follows."
 title: "SAC_Buhrig_Metrics_V1"
 type: software
 
@@ -7,6 +7,7 @@ authors:
   - family-names: "Viveros Velásquez"
     given-names: "Marco Antonio"
     orcid: "https://orcid.org/0009-0001-3653-5758"
+    affiliation: "Independent Researcher"
 
 version: "1.0.1"
 year: 2026
@@ -15,8 +16,33 @@ repository-code: "https://github.com/MAVIVEROSVELASQUEZ/SAC_Buhrig_Metrics_V1"
 
 abstract: >
   Reproducible geometric and computational pipeline for the implementation of
-  Bührig-type transverse metrics in submarine canyons, based on explicit
-  geometric definitions and fully traceable computational workflows.
+  Bührig-type transverse metrics (Wmax, Dmax, SWmax) in shore-connected submarine
+  canyons (SACs), based on explicit geometric definitions, real canyon-edge
+  asymmetry, and fully traceable computational workflows.
 
-license: "MIT"
+license: "All rights reserved"
 
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Viveros Velásquez"
+      given-names: "Marco Antonio"
+      orcid: "https://orcid.org/0009-0001-3653-5758"
+  title: "SAC_Buhrig_Metrics_V1"
+  version: "1.0.1"
+  year: 2026
+  note: >
+    This software is proprietary. All rights are reserved by the author.
+    The conceptual, geometric, and methodological framework is documented
+    in an independent manual and must be cited separately.
+
+references:
+  - type: report
+    authors:
+      - family-names: "Viveros Velásquez"
+        given-names: "Marco Antonio"
+    title: "Manual para la implementación geométrica y computacional reproducible de métricas tipo Bührig en cañones submarinos"
+    version: "1.0.0"
+    year: 2026
+    publisher: "Zenodo"
+    doi: "10.5281/zenodo.18446821"
