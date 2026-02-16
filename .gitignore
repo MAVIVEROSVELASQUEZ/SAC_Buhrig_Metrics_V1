@@ -1,3 +1,18 @@
+# ===============================
+# Python environment
+# ===============================
 .venv/
 __pycache__/
 *.pyc
+
+## ===============================
+# Ignore src content but keep folder
+# ===============================
+src/*
+!src/.gitkeep
+
+# ===============================
+# Ignore heavy validation images but keep folder
+# ===============================
+outputs/validation_profiles/All_Profiles/*
+!outputs/validation_profiles/All_Profiles/.gitkeep
