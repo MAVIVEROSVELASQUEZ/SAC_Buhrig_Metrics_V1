@@ -9,11 +9,7 @@
 
 ## Overview
 
-## Overview
-
 Reproducible Python 3.12.5 implementation of Bührig-type morphometric metrics Wmax, Dmax, and SWmax for real submarine canyons. Validated using GMRT submarine DEM data, with the San Antonio Submarine Canyon as case study. Associated manual DOI: https://doi.org/10.5281/zenodo.18446821
-
-## Project Description
 
 ## Project Description
 
